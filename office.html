@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>360 Image Viewer</title>
+</head>
+<body>
+    <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
+    <script>
+        AFRAME.registerComponent('gyro-sensitivity', {
+            init: function () {
+                this.el.addEventListener('loaded', () => {
+                    let lookControls = this.el.getAttribute('look-controls');
+
+                    lookControls.touchDrag = 0.005; // Modify this value to adjust sensitivity
+
+                    this.el.setAttribute('look-controls', lookControls);
+                });
+            }
+        });
+    </script>
+    <body>
+        <a-scene>
+            <a-sky src="./3d/360_3.jpg"></a-sky>
+            <a-entity
+                position="0 1.6 0"
+                camera
+                look-controls="magicWindowTrackingEnabled: true" // Enable magic window tracking
+                gyro-sensitivity>
+            </a-entity>
+        </a-scene> 
+    </body>
+</body>
+</html>
